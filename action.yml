@@ -1,0 +1,20 @@
+name: 'Github Telegram Notifier'
+description: 'Sends commit updates to any chat in Telegram'
+author: 'wrench'
+inputs:
+  bot_token:
+    description: >
+      A bot token for sending the github commit updates to a chat.
+      You may create one my sending `/newbot` to [@BotFather](https://telegram.dog/BotFather)
+    required: true
+  chat_id:
+    description: 'The ID of the chat where you want the bot to send the message'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    GIT_EVENT: '${{ toJSON(github) }}'
+branding:
+  icon: 'bell'
+  color: 'blue'
