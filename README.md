@@ -12,15 +12,16 @@ A Telegram Bot Token is required for using the Telegram bot from which the commi
  - Follow the onscreen instructions and at the end, you'll obtain a bot token.
 
 ### - `chat_id`
-### Obtaining a Telegram Bot Token
+### Obtaining Chat ID of a group
  - Go to the group of your choice  
  - Add [@MissRose_bot](https://telegram.dog/MissRose_bot)
  - Type the command `/id` and send it to the group.
 
+## How to use
+
 Add the following lines of code in your YML file.
 
 ```sh
-  - uses: actions/checkout@v3
   - name: Notify the commit on Telegram
     uses: EverythingSuckz/github-telegram-notify@v1.0.0
     with:
