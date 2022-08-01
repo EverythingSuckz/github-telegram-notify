@@ -47,7 +47,7 @@ func main() {
 	apiBaseUri, _ := url.Parse("https://api.telegram.org")
 	tg_token := os.Getenv("INPUT_BOT_TOKEN")
 	chatId := os.Getenv("INPUT_CHAT_ID")
-	gitEventRaw := os.Getenv("GIT_EVENT")
+	gitEventRaw := os.Getenv("INPUT_GIT_EVENT")
 
 	var gitEvent Metadata
 	_ = json.Unmarshal([]byte(gitEventRaw), &gitEvent)

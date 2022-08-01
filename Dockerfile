@@ -8,7 +8,7 @@ RUN go build -o /src/app
 
 FROM gcr.io/distroless/base
 
-LABEL version="0.0.1"
+LABEL version="1.0.0"
 LABEL maintainer="wrench"
 LABEL repository="https://github.com/EverythingSuckz/github-telegram-notify"
 LABEL homepage="https://github.com/EverythingSuckz/github-telegram-notify"

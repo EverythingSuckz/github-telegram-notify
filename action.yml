@@ -10,11 +10,13 @@ inputs:
   chat_id:
     description: 'The ID of the chat where you want the bot to send the message'
     required: true
+  git_event:
+    description: The GitHub context json used to fetch repository info.
+    default: ${{ toJSON(github) }}
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    GIT_EVENT: '${{ toJSON(github) }}'
 branding:
   icon: 'bell'
   color: 'blue'
