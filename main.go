@@ -16,7 +16,7 @@ type Metadata struct {
 	ServerUrl      string `json:"server_url"`
 }
 
-func (m Metadata) repoUrl() string {
+func (m *Metadata) repoUrl() string {
 	return fmt.Sprint(m.ServerUrl, "/", m.RepositoryName)
 }
 
@@ -39,7 +39,7 @@ type Author struct {
 	Username string `json:"username"`
 }
 
-func (a Author) Url() string {
+func (a *Author) Url() string {
 	return fmt.Sprint("https://github.com/", a.Username)
 }
 
