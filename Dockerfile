@@ -1,7 +1,7 @@
 FROM golang:1.18 as builder
 WORKDIR /src
 COPY . .
-RUN go build -o /src/app
+RUN go build -o /src/app -ldflags="-w -s" .
 FROM gcr.io/distroless/base
 
 LABEL version="1.0.0"
