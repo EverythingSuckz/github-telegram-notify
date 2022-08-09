@@ -29,8 +29,44 @@ Add the following lines of code in your YML file.
       chat_id: '${{ secrets.CHAT_ID }}'
 ```
 
+## Supported events
+
+- [x] Commits
+- [x] Forks
+- [x] Watch
+  - [x] stars
+- [x] Issues
+  - [x] created
+  - [x] closed
+  - [x] opened
+  - [x] reopened
+  - [x] locked
+  - [x] unlocked
+- [x] Issue comments
+  - [x] created
+  - [x] deleted
+- [x] Pull Request
+  - [x] created
+  - [x] closed
+  - [x] opened
+  - [x] reopened
+  - [x] locked
+  - [x] unlocked
+  - [x] synchronize
+- [x] Pull Request comments
+  - [x] created
+  - [x] deleted
+- [x] Releases
+  - [x] published
+  - [x] released
+- [ ] Discussions
+- [ ] Discussion comments
+
 ## Contributing
-Feel free to open a PR in case of any minor fix and please open an issue first for major changes.
+
+If you can't find the event you are looking for, assume that it's not tested yet. You are free to open a pull request.
+
+Also, feel free to open a PR in case of any minor fix and please open an issue first for major changes.
 
 ## License
 
