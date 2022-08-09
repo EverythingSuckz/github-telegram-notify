@@ -23,7 +23,7 @@ Add the following lines of code in your YML file.
 
 ```sh
   - name: Notify the commit on Telegram
-    uses: EverythingSuckz/github-telegram-notify@v1.0.0
+    uses: EverythingSuckz/github-telegram-notify@main
     with:
       bot_token: '${{ secrets.BOT_TOKEN }}'
       chat_id: '${{ secrets.CHAT_ID }}'
