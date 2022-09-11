@@ -16,7 +16,7 @@ func CreateContents(meta *types.Metadata) (text string, markupText string, marku
 
 		text = createForkText(event)
 		markupText = fmt.Sprintf("Total Forks: %d", event.Repo.ForksCount)
-		markupUrl = event.Repo.HTMLURL + "/forks"
+		markupUrl = event.Repo.HTMLURL + "/network/members"
 	case "issue_comment":
 		event := event.(*types.IssueCommentEvent)
 
