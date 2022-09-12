@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github-telegram-notify/types"
+	"html"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -14,7 +15,8 @@ func SendMessage(token string, chatID string, text string, markupText string, ma
 	req_url, _ := url.Parse(fmt.Sprint(apiBaseUri, "/bot", token, "/sendMessage"))
 	params := url.Values{}
 	params.Set("chat_id", chatID)
-	params.Set("text", text)
+	escaped_text := html.EscapeString(text)
+	params.Set("text", escaped_text)
 	params.Set("parse_mode", "html")
 	params.Set("disable_web_page_preview", "true")
 	kyb, err := json.Marshal(map[string][][]map[string]string{
