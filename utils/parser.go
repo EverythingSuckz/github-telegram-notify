@@ -70,7 +70,7 @@ func CreateContents(meta *types.Metadata) (text string, markupText string, marku
 		// No Activity Types
 		text = createPushText(event)
 		markupText = "Open Changes"
-		markupUrl = event.Repo.HTMLURL
+		markupUrl = event.Compare
 	case "release":
 		event := event.(*types.ReleaseEvent)
 		if !Contains([]string{"published", "released"}, event.Action) {

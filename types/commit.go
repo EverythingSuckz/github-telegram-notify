@@ -5,6 +5,7 @@ type PushEvent struct {
 	Commits []Commit   `json:"commits,omitempty"`
 	Action  string     `json:"action,omitempty"`
 	Repo    Repository `json:"repository,omitempty"`
+	Compare string     `json:"compare,omitempty"`
 }
 
 type Commit struct {
