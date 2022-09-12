@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"github-telegram-notify/types"
+	"html"
 	"strings"
 )
 
@@ -108,7 +109,7 @@ func createPushText(event *types.PushEvent) string {
 		text += fmt.Sprintf("• <a href='%s'>%s</a> - %s by <a href='%s'>%s</a>\n",
 			commit.Url,
 			commit.Id[:7],
-			commit.Message,
+			html.EscapeString(commit.Message),
 			commit.Author.HTMLURL,
 			commit.Author.Name,
 		)
@@ -133,7 +134,7 @@ func createIssueCommentText(event *types.IssueCommentEvent) string {
 		event.Sender.HTMLURL,
 		event.Sender.Login,
 		event.Issue.HTMLURL,
-		event.Issue.Title,
+		html.EscapeString(event.Issue.Title),
 		event.Repo.HTMLURL,
 		event.Repo.FullName,
 	)
@@ -145,7 +146,7 @@ func createIssuesText(event *types.IssuesEvent) string {
 		event.Sender.Login,
 		event.Action,
 		event.Issue.HTMLURL,
-		event.Issue.Title,
+		html.EscapeString(event.Issue.Title),
 		event.Repo.HTMLURL,
 		event.Repo.FullName,
 	)
@@ -158,7 +159,7 @@ func createPullRequestText(event *types.PullRequestEvent) (text string) {
 		text += " a new"
 	}
 	text += " pull request "
-	text += fmt.Sprintf("<a href='%s'>%s</a>", event.PullRequest.HTMLURL, event.PullRequest.Title)
+	text += fmt.Sprintf("<a href='%s'>%s</a>", event.PullRequest.HTMLURL, html.EscapeString(event.PullRequest.Title))
 	text += fmt.Sprintf(" in <a href='%s'>%s</a>", event.Repo.HTMLURL, event.Repo.FullName)
 	return text
 }
@@ -168,7 +169,7 @@ func createPullRequestReviewCommentText(event *types.PullRequestReviewCommentEve
 		event.Sender.HTMLURL,
 		event.Sender.Login,
 		event.PullRequest.HTMLURL,
-		event.PullRequest.Title,
+		html.EscapeString(event.PullRequest.Title),
 		event.Repo.HTMLURL,
 		event.Repo.FullName,
 	)
@@ -190,7 +191,7 @@ func createReleaseText(event *types.ReleaseEvent) (text string) {
 	if event.Release.Assets != nil {
 		text += "📦 <b>Assets:</b>\n"
 		for _, asset := range event.Release.Assets {
-			text += fmt.Sprintf("• <a href='%s'>%s</a>\n", asset.BrowserDownloadURL, asset.Name)
+			text += fmt.Sprintf("• <a href='%s'>%s</a>\n", asset.BrowserDownloadURL, html.EscapeString(asset.Name))
 		}
 	}
 
