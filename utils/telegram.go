@@ -1,6 +1,7 @@
 package utils
 
 import (
+        "bytes"
 	"encoding/json"
 	"fmt"
 	"github-telegram-notify/types"
@@ -13,10 +14,11 @@ func SendMessage(token string, chatID string, text string, markupText string, ma
 	apiBaseUri, _ := url.Parse("https://api.telegram.org")
 	req_url, _ := url.Parse(fmt.Sprint(apiBaseUri, "/bot", token, "/sendMessage"))
 	params := url.Values{}
-	params.Set("chat_id", chatID)
-	params.Set("text", text)
-	params.Set("parse_mode", "html")
-	params.Set("disable_web_page_preview", "true")
+        params := map[string]string{}
+	params.["chat_id"] = chatID
+	params["text"] = text
+	params["parse_mode"] = "html"
+	params["disable_web_page_preview"] = "true"
 	kyb, err := json.Marshal(map[string][][]map[string]string{
 		"inline_keyboard": {
 			{{"text": markupText, "url": markupUrl}},
@@ -29,9 +31,16 @@ func SendMessage(token string, chatID string, text string, markupText string, ma
 			Message:     err.Error(),
 		}
 	}
-	params.Set("reply_markup", string(kyb))
-	req_url.RawQuery = params.Encode()
-	resp, err := http.Get(req_url.String())
+	params["reply_markup"] = string(kyb)
+        json_data, err := json.Marshal(params)
+        if err != nil {
+		return types.Error{
+			Module:      "json",
+			Description: "Failed to marshal request parameter",
+			Message:     err.Error(),
+		}
+	}
+	resp, err := http.Post(req_url.String(), "application/json", bytes.NewBuffer(json_data))
 	if err != nil {
 		return types.Error{
 			Module:      "http",
