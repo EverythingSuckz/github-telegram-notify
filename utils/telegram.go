@@ -1,7 +1,7 @@
 package utils
 
 import (
-        "bytes"
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"github-telegram-notify/types"
@@ -13,12 +13,12 @@ import (
 func SendMessage(token string, chatID string, text string, markupText string, markupUrl string) (error types.Error) {
 	apiBaseUri, _ := url.Parse("https://api.telegram.org")
 	req_url, _ := url.Parse(fmt.Sprint(apiBaseUri, "/bot", token, "/sendMessage"))
-	params := url.Values{}
-        params := map[string]string{}
-	params.["chat_id"] = chatID
-	params["text"] = text
-	params["parse_mode"] = "html"
-	params["disable_web_page_preview"] = "true"
+	data := map[string]string{
+		"chat_id":                  chatID,
+		"text":                     text,
+		"disable_web_page_preview": "true",
+		"parse_mode":               "html",
+	}
 	kyb, err := json.Marshal(map[string][][]map[string]string{
 		"inline_keyboard": {
 			{{"text": markupText, "url": markupUrl}},
@@ -31,9 +31,9 @@ func SendMessage(token string, chatID string, text string, markupText string, ma
 			Message:     err.Error(),
 		}
 	}
-	params["reply_markup"] = string(kyb)
-        json_data, err := json.Marshal(params)
-        if err != nil {
+	data["reply_markup"] = string(kyb)
+	json_data, err := json.Marshal(data)
+	if err != nil {
 		return types.Error{
 			Module:      "json",
 			Description: "Failed to marshal request parameter",
