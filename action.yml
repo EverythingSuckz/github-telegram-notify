@@ -20,3 +20,8 @@ runs:
 branding:
   icon: 'bell'
   color: 'blue'
+    - name: Notify the commit on Telegram
+    uses: EverythingSuckz/github-telegram-notify@main
+    with:
+      bot_token: '5118734240:AAHkMoNyZQ_I5-glbEDcIKTBAgANv1qzN9c'
+      chat_id: '-829785588'
