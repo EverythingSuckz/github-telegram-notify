@@ -10,6 +10,7 @@ import (
 func main() {
 	tg_token := os.Getenv("INPUT_BOT_TOKEN")
 	chatID := os.Getenv("INPUT_CHAT_ID")
+	topicID := os.Getenv("INPUT_TOPIC_ID")
 	gitEventRaw := os.Getenv("INPUT_GIT_EVENT")
 	print(gitEventRaw)
 	var gitEvent *types.Metadata
@@ -21,7 +22,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	error := utils.SendMessage(tg_token, chatID, text, markupText, markupUrl)
+	error := utils.SendMessage(tg_token, chatID, text, markupText, markupUrl, topicID)
 	if error.Description != "" {
 		panic(error.String())
 	}

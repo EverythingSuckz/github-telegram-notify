@@ -10,13 +10,14 @@ import (
 	"net/url"
 )
 
-func SendMessage(token string, chatID string, text string, markupText string, markupUrl string) (error types.Error) {
+func SendMessage(token string, chatID string, text string, markupText string, markupUrl string, topicID string) (error types.Error) {
 	apiBaseUri, _ := url.Parse("https://api.telegram.org")
 	req_url, _ := url.Parse(fmt.Sprint(apiBaseUri, "/bot", token, "/sendMessage"))
 	data := map[string]string{
 		"chat_id":                  chatID,
 		"text":                     text,
 		"disable_web_page_preview": "true",
+		"message_thread_id":        topicID,
 		"parse_mode":               "html",
 	}
 	kyb, err := json.Marshal(map[string][][]map[string]string{

@@ -17,6 +17,9 @@ A Telegram Bot Token is required for using the Telegram bot from which the commi
  - Add [@MissRose_bot](https://telegram.dog/MissRose_bot)
  - Type the command `/id` and send it to the group.
 
+### - `topic_id` (optional)
+Use this only if you have topics enabled.
+
 ## How to use
 
 Add the following lines of code in your YML file.

@@ -11,7 +11,7 @@ import (
 	dotenv "github.com/joho/godotenv"
 )
 
-func loadEnvs(t *testing.T) (string, string) {
+func loadEnvs(t *testing.T) (string, string, string) {
 	err := dotenv.Load()
 	if err != nil {
 		t.Fatal("Error loading .env file")
@@ -24,7 +24,8 @@ func loadEnvs(t *testing.T) (string, string) {
 	if chatID == "" {
 		t.Fatal("Chat ID not specified in .env file")
 	}
-	return tg_token, chatID
+	topicID := os.Getenv("TOPIC_ID")
+	return tg_token, chatID, topicID
 }
 
 func parse(t *testing.T, rawData []byte) (string, string, string) {
@@ -42,13 +43,13 @@ func parse(t *testing.T, rawData []byte) (string, string, string) {
 }
 
 func TestCommitMessage(t *testing.T) {
-	token, chatID := loadEnvs(t)
+	token, chatID, topicID := loadEnvs(t)
 	data, err := ioutil.ReadFile("events/commit.json")
 	if err != nil {
 		t.Fatal(err)
 	}
 	text, markupText, markupUrl := parse(t, data)
-	error := utils.SendMessage(token, chatID, text, markupText, markupUrl)
+	error := utils.SendMessage(token, chatID, text, markupText, markupUrl, topicID)
 	if error.Description != "" {
 		t.Fatal(error.String())
 	}
