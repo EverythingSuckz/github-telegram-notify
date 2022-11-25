@@ -1,6 +1,6 @@
 <h1 align="center">Github Telegram Notify</h1>
 <h4 align="center">Actions that sends commit updates of a repository to any chat in Telegram</h4>
-<p align="center"><a href="https://github.com/marketplace/actions/github-telegram-notifier">🏪 View on Github Marketplace</a>&emsp;🏷️ <a href="https://github.com/EverythingSuckz/github-telegram-notify/releases/tag/v1.1.1">v1.1.1</a></p>
+<p align="center"><a href="https://github.com/marketplace/actions/github-telegram-notifier">🏪 View on Github Marketplace</a>&emsp;🏷️ <a href="https://github.com/EverythingSuckz/github-telegram-notify/releases/tag/v1.1.2">v1.1.2</a></p>
 
 ## Prerequisites
 
