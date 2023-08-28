@@ -30,8 +30,8 @@ Add the following lines of code in your YML file.
   - name: Notify the commit on Telegram
     uses: EverythingSuckz/github-telegram-notify@main
     with:
-      bot_token: '${{ secrets.BOT_TOKEN }}'
-      chat_id: '${{ secrets.CHAT_ID }}'
+      bot_token: '${{ secrets.TELEGRAM_BOT_TOKEN }}'
+      chat_id: '${{ secrets.TELEGRAM_CHAT_ID }}'
 ```
 
 ### Advanced example
