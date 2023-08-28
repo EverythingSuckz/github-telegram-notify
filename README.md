@@ -1,4 +1,4 @@
-<h1 align="center">Github Telegram Notify</h1>
+<h1 align="center">GitHub Telegram Notify</h1>
 <h4 align="center">Actions that sends commit updates of a repository to any chat in Telegram</h4>
 <p align="center"><a href="https://github.com/marketplace/actions/github-telegram-notifier">🏪 View on Github Marketplace</a>&emsp;🏷️ <a href="https://github.com/EverythingSuckz/github-telegram-notify/releases/tag/v1.1.2">v1.1.2</a></p>
 
@@ -20,16 +20,56 @@ A Telegram Bot Token is required for using the Telegram bot from which the commi
 ### - `topic_id` (optional)
 Use this only if you have topics enabled.
 
-## How to use
+## How to use?
+
+### Basic example
 
 Add the following lines of code in your YML file.
 
-```sh
+```yml
   - name: Notify the commit on Telegram
     uses: EverythingSuckz/github-telegram-notify@main
     with:
-      bot_token: '${{ secrets.BOT_TOKEN }}'
-      chat_id: '${{ secrets.CHAT_ID }}'
+      bot_token: '${{ secrets.TELEGRAM_BOT_TOKEN }}'
+      chat_id: '${{ secrets.TELEGRAM_CHAT_ID }}'
+```
+
+### Advanced example
+
+You can also replace the content of your YML file with the following lines of code.
+
+
+```yml
+name: Telegram Notification
+on:
+  push:
+  fork:
+  watch:
+  issues:
+    types: [created, closed, opended, reopened, locked, unlocked]
+  issue_comment:
+    types: [created, deleted]
+  pull_request:
+    types: [created, closed, opened, reopened, locked, unlocked, synchronize]
+  pull_request_target:
+    types: [created, closed, opened, reopened, locked, unlocked, synchronize]
+  pull_request_review_comment:
+    types: [created, deleted]
+  release:
+    types: [published, released]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - name: Notify everything on Telegram
+          uses: EverythingSuckz/github-telegram-notify@main
+          with:
+            bot_token: '${{ secrets.TELEGRAM_BOT_TOKEN }}'
+            chat_id: '${{ secrets.TELEGRAM_CHAT_ID }}'
+            topic_id: '${{ secrets.TELEGRAM_TOPIC_ID }}'
 ```
 
 ## Supported events

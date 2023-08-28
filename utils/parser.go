@@ -55,6 +55,19 @@ func CreateContents(meta *types.Metadata) (text string, markupText string, marku
 		text = createPullRequestText(event)
 		markupText = "Open Pull Request"
 		markupUrl = event.PullRequest.HTMLURL
+	case "pull_request_target":
+		event := event.(*types.PullRequestEvent)
+
+		if !Contains([]string{
+			"created", "opened", "reopened", "locked", "unlocked", "closed", "synchronize", // More to be added.
+		}, event.Action) {
+			err = fmt.Errorf("unsupported event type '%s' for %s", event.Action, meta.EventName)
+			return
+		}
+
+		text = createPullRequestText(event)
+		markupText = "Open Pull Request"
+		markupUrl = event.PullRequest.HTMLURL
 	case "pull_request_review_comment":
 		event := event.(*types.PullRequestReviewCommentEvent)
 
