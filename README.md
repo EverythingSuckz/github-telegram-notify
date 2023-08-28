@@ -26,7 +26,7 @@ Use this only if you have topics enabled.
 
 Add the following lines of code in your YML file.
 
-```sh
+```yml
   - name: Notify the commit on Telegram
     uses: EverythingSuckz/github-telegram-notify@main
     with:
@@ -39,7 +39,7 @@ Add the following lines of code in your YML file.
 You can also replace the content of your YML file with the following lines of code.
 
 
-```sh
+```yml
 name: Telegram Notification
 on:
   push:
