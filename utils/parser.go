@@ -42,7 +42,7 @@ func CreateContents(meta *types.Metadata) (text string, markupText string, marku
 		text = createIssuesText(event)
 		markupText = "Open Issue"
 		markupUrl = event.Issue.HTMLURL
-	case "pull_request":
+	case "pull_request_target":
 		event := event.(*types.PullRequestEvent)
 
 		if !Contains([]string{
